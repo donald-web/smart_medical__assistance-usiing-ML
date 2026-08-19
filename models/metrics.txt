@@ -1,0 +1,59 @@
+Accuracy: 80.55%
+
+                         precision    recall  f1-score   support
+
+            Acid Reflux       0.95      0.84      0.89        25
+                Allergy       0.85      0.92      0.88        25
+                 Anemia       0.66      0.84      0.74        25
+       Anxiety Disorder       0.83      0.80      0.82        25
+           Appendicitis       0.85      0.68      0.76        25
+              Arthritis       0.91      0.84      0.88        25
+                 Asthma       0.62      0.72      0.67        25
+            Astigmatism       0.85      0.88      0.86        25
+             Bronchitis       0.70      0.64      0.67        25
+               COVID-19       1.00      1.00      1.00        25
+             Chickenpox       0.71      0.88      0.79        25
+                Cholera       0.75      0.84      0.79        25
+            Common Cold       0.75      0.60      0.67        25
+         Conjunctivitis       0.68      0.76      0.72        25
+            Dehydration       0.81      0.84      0.82        25
+                 Dengue       1.00      1.00      1.00        25
+             Depression       0.89      0.96      0.92        25
+               Diabetes       0.91      0.80      0.85        25
+          Ear Infection       0.92      0.92      0.92        25
+                 Eczema       0.73      0.64      0.68        25
+          Eye Infection       0.77      0.68      0.72        25
+                    Flu       1.00      0.92      0.96        25
+         Food Poisoning       0.76      0.88      0.81        25
+              Gastritis       0.63      0.76      0.69        25
+          Heart Disease       0.81      0.84      0.82        25
+            Hepatitis A       0.64      0.84      0.72        25
+            Hepatitis B       0.81      0.68      0.74        25
+           Hypertension       1.00      0.88      0.94        25
+            Hypotension       1.00      0.96      0.98        25
+               Insomnia       0.75      0.84      0.79        25
+               Jaundice       0.60      0.60      0.60        25
+       Kidney Infection       0.69      0.88      0.77        25
+           Kidney Stone       0.78      0.84      0.81        25
+               Leukemia       0.89      0.96      0.92        25
+          Liver Disease       0.70      0.56      0.62        25
+                Malaria       1.00      0.96      0.98        25
+                Measles       0.92      0.96      0.94        25
+               Migraine       0.53      0.40      0.45        25
+                  Mumps       0.96      0.88      0.92        25
+                Obesity       0.88      0.88      0.88        25
+         Panic Disorder       0.91      0.84      0.88        25
+              Pneumonia       0.96      0.96      0.96        25
+              Psoriasis       0.81      0.84      0.82        25
+              Sinusitis       0.72      0.84      0.78        25
+         Skin Infection       0.67      0.56      0.61        25
+                 Stroke       0.53      0.64      0.58        25
+       Thyroid Disorder       0.83      0.80      0.82        25
+           Tuberculosis       1.00      0.92      0.96        25
+                Typhoid       0.93      1.00      0.96        25
+                  Ulcer       0.62      0.40      0.49        25
+Urinary Tract Infection       0.85      0.68      0.76        25
+
+               accuracy                           0.81      1275
+              macro avg       0.81      0.81      0.80      1275
+           weighted avg       0.81      0.81      0.80      1275

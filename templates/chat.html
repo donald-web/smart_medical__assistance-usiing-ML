@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <h1>AI Medical Chatbot</h1>
+    <p>Chat with the assistant and describe your symptoms naturally.</p>
+
+    <div class="chat-box">
+        {% for msg in messages %}
+            <div class="chat-message {{ msg.sender }}">
+                <p>{{ msg.message }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if detected_symptoms %}
+    <div class="info-box">
+        <h3>Detected Symptoms</h3>
+        <p>{{ detected_symptoms | join(", ") }}</p>
+    </div>
+    {% endif %}
+
+    <form method="POST" class="chat-form">
+        <textarea 
+            name="message" 
+            class="textarea" 
+            placeholder="..."
+            required
+        ></textarea>
+
+        <button class="btn" type="submit">Send</button>
+        <button class="btn secondary" type="button" onclick="startVoice()">🎤 Voice</button>
+        <a href="{{ url_for('reset_chat') }}" class="btn secondary">Reset Chat</a>
+    </form>
+</div>
+
+<script>
+function startVoice() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert("Voice input is not supported in this browser. Please use Google Chrome.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.start();
+
+    recognition.onresult = function(event) {
+        document.querySelector("textarea[name='message']").value =
+            event.results[0][0].transcript;
+    };
+
+    recognition.onerror = function(event) {
+        alert("Voice input error: " + event.error);
+    };
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+    <h1>AI-Powered Disease Prediction and Healthcare Assistance System</h1>
+    <p>Enter patient symptoms to receive AI-based preliminary disease prediction and healthcare guidance.</p>
+</section>
+
+<form action="/predict" method="POST" class="card">
+    <h2>Patient Information</h2>
+
+    <label>Full Name</label>
+    <input class="input" type="text" name="patient_name" required>
+
+    <div class="form-row">
+        <div>
+            <label>Age</label>
+            <input 
+                class="input"
+                type="number"
+                name="age"
+                id="age"
+                min="1"
+                max="120"
+                step="1"
+                placeholder="Enter age"
+                required
+            >
+        </div>
+
+        <div>
+            <label>Gender</label>
+            <select class="input" name="gender">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label>Phone</label>
+            <input class="input" type="text" name="phone">
+        </div>
+
+        <div>
+            <label>Email</label>
+            <input class="input" type="email" name="email">
+        </div>
+    </div>
+
+    <label>Blood Group</label>
+    <select class="input" name="blood_group">
+        <option value="">Select</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+        <option>O+</option>
+        <option>O-</option>
+    </select>
+
+    <label>Address</label>
+    <textarea class="textarea small-textarea" name="address"></textarea>
+
+    <div id="parentDetails" style="display: none;">
+        <h2>Parent / Guardian Details</h2>
+
+        <label>Parent / Guardian Name</label>
+        <input class="input" type="text" name="parent_name" id="parent_name" placeholder="Enter parent or guardian name">
+
+        <label>Parent / Guardian Phone</label>
+        <input class="input" type="text" name="parent_phone" id="parent_phone" placeholder="Enter parent or guardian phone">
+
+        <label>Parent / Guardian Email</label>
+        <input class="input" type="email" name="parent_email" id="parent_email" placeholder="Enter parent or guardian email">
+    </div>
+
+    <h2>Select Symptoms</h2>
+    <p class="muted">Select at least 5 symptoms.</p>
+
+    <div class="grid">
+        {% for symptom in features %}
+        <label class="checkbox-card">
+            <input type="checkbox" name="{{ symptom }}">
+            {{ symptom.replace("_", " ").title() }}
+        </label>
+        {% endfor %}
+    </div>
+
+    <div class="button-row">
+        <button class="btn" type="submit">Predict Disease</button>
+        <button class="btn secondary" type="reset">Clear</button>
+    </div>
+</form>
+
+<script>
+const ageInput = document.getElementById("age");
+const parentDetails = document.getElementById("parentDetails");
+
+const parentName = document.getElementById("parent_name");
+const parentPhone = document.getElementById("parent_phone");
+const parentEmail = document.getElementById("parent_email");
+
+function toggleParentDetails() {
+    const age = parseInt(ageInput.value);
+
+    if (age > 0 && age < 18) {
+        parentDetails.style.display = "block";
+        parentName.required = true;
+        parentPhone.required = true;
+        parentEmail.required = true;
+    } else {
+        parentDetails.style.display = "none";
+        parentName.required = false;
+        parentPhone.required = false;
+        parentEmail.required = false;
+    }
+}
+
+ageInput.addEventListener("input", toggleParentDetails);
+</script>
+
+{% endblock %}

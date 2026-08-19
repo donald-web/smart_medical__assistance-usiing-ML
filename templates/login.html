@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card small-card">
+<h1>Admin Login</h1>
+<form method="POST">
+<input class="input" type="text" name="username" placeholder="Username">
+<div class="password-container">
+    <input 
+        class="input"
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+    >
+
+    <span class="toggle-password" onclick="togglePassword()">
+        👁
+    </span>
+</div>
+<button class="btn" type="submit">Login</button>
+</form>
+<!-- <p class="muted">Demo login: admin / admin123</p> -->
+</div>
+
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById("password");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+}
+</script>
+{% endblock %}

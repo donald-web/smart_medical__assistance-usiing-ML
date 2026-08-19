@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+<h1>Booked Appointments</h1>
+<table>
+<tr><th>Created</th><th>Patient</th><th>Phone</th><th>Doctor</th><th>Date</th><th>Time</th><th>Reason</th></tr>
+{% for a in appointments %}
+<tr><td>{{ a.created_at.strftime("%Y-%m-%d %H:%M") }}</td><td>{{ a.patient_name }}</td><td>{{ a.phone }}</td><td>{{ a.doctor }}</td><td>{{ a.appointment_date }}</td><td>{{ a.appointment_time }}</td><td>{{ a.reason }}</td></tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

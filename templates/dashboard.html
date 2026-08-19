@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+<h1>Statistics Dashboard</h1>
+<h2>Disease Prediction Statistics</h2><canvas id="diseaseChart"></canvas>
+<h2>Gender Statistics</h2><canvas id="genderChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const diseaseData = {{ disease_count | tojson }};
+const genderData = {{ gender_count | tojson }};
+new Chart(document.getElementById("diseaseChart"), {type:"bar",data:{labels:Object.keys(diseaseData),datasets:[{label:"Predictions",data:Object.values(diseaseData)}]}});
+new Chart(document.getElementById("genderChart"), {type:"pie",data:{labels:Object.keys(genderData),datasets:[{label:"Gender",data:Object.values(genderData)}]}});
+</script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+<h1>Patient Prediction History</h1>
+<table>
+<tr><th>Date</th><th>Patient</th><th>Age</th><th>Gender</th><th>Symptoms</th><th>Prediction</th><th>Confidence</th><th>Report</th></tr>
+{% for r in records %}
+<tr>
+<td>{{ r.created_at.strftime("%Y-%m-%d %H:%M") }}</td><td>{{ r.patient_name }}</td><td>{{ r.age }}</td><td>{{ r.gender }}</td><td>{{ r.symptoms }}</td><td>{{ r.prediction }}</td><td>{{ r.confidence }}</td>
+<td><a class="small-link" href="{{ url_for('download_report', record_id=r.id) }}">PDF</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card small-card">
+<h1>Book Appointment</h1>
+<form method="POST">
+<input class="input" type="text" name="patient_name" placeholder="Patient Name" required>
+<input class="input" type="text" name="phone" placeholder="Phone Number">
+<select class="input" name="doctor"><option>General Physician</option><option>Cardiologist</option><option>Pulmonologist</option><option>Neurologist</option><option>Endocrinologist</option><option>Gastroenterologist</option></select>
+<input class="input" type="date" name="appointment_date">
+<input class="input" type="time" name="appointment_time">
+<textarea class="textarea" name="reason" placeholder="Reason for appointment"></textarea>
+<button class="btn" type="submit">Book Appointment</button>
+</form>
+</div>
+{% endblock %}

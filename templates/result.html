@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Prediction Result</h1>
+    <div class="info-box">
+        <p><strong>Name:</strong> {{ patient_name }}</p>
+        <p><strong>Age:</strong> {{ age }}</p>
+        <p><strong>Gender:</strong> {{ gender }}</p>
+        <p><strong>Phone:</strong> {{ phone }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Blood Group:</strong> {{ blood_group }}</p>
+        <p><strong>Address:</strong> {{ address }}</p>
+{% if age|int < 18 %}
+<h3>Parent / Guardian Information</h3>
+<div class="info-box">
+    <p><strong>Name:</strong> {{ parent_name }}</p>
+    <p><strong>Phone:</strong> {{ parent_phone }}</p>
+    <p><strong>Email:</strong> {{ parent_email }}</p>
+</div>
+{% endif %}
+    </div>
+
+    <h2 class="prediction">{{ prediction }}</h2>
+    <img src="{{ url_for('static', filename=image_path) }}" class="disease-img" alt="Disease image">
+    <p><strong>Confidence:</strong> {{ confidence }}%</p>
+    {% if warning_message %}
+<div class="warning-box">
+    {{ warning_message }}
+</div>
+{% endif %}
+    <p><strong>Selected Symptoms:</strong> {{ symptoms | join(", ") }}</p>
+
+    <h3>Description</h3><p>{{ description }}</p>
+    <h3>Common Causes</h3><ul>{% for item in causes %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h3>Main Symptoms</h3><ul>{% for item in disease_symptoms %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h3>Precautions</h3><ul>{% for item in precautions %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h3>Suggested Treatment</h3><ul>{% for item in treatment %}<li>{{ item }}</li>{% endfor %}</ul>
+    <h3>Recommended Specialist</h3><p>{{ doctor }}</p>
+<h3>Top Prediction Results</h3>
+
+<ol>
+    {% for item in top_prediction_results %}
+    <li>
+        <strong>{{ item.disease }}</strong> — {{ item.percent }}%
+    </li>
+    {% endfor %}
+</ol>
+
+<p>
+    <strong>Confidence:</strong>
+    {{ confidence }}%
+    ({{ relative_conf }}x more likely than random chance)
+</p>
+
+    <p class="warning">This system is for educational and preliminary awareness only. It is not a replacement for professional medical diagnosis.</p>
+    <a class="btn" href="{{ url_for('download_report', record_id=record_id) }}">Download PDF Report</a>
+    <a class="btn secondary" href="/">Make Another Prediction</a>
+</div>
+<h4>Top Possible Conditions:</h4>
+{% for disease, conf in top3 %}
+  <p>{{ loop.index }}. {{ disease }} — {{ conf }}%</p>
+{% endfor %}
+</div>
+{% endblock %}
